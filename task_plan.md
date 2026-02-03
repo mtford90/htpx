@@ -110,44 +110,44 @@ pnpm test:shell     # shell script tests
   - [x] Integration: make HTTP request through proxy, verify captured
   - [x] Integration: control API via Unix socket
 
-### Phase 3c: Shell integration
-- [ ] `htpx init` - output shell function for zsh/bash
-- [ ] `htpx intercept` - output env var exports (HTTP_PROXY, HTTPS_PROXY, CA vars)
-- [ ] Auto-start daemon if needed
-- [ ] Label support (--label flag)
-- [ ] Register session with daemon
-- [ ] **Tests:**
-  - [ ] Unit: env var output formatting
-  - [ ] Shell script: source `htpx init`, verify function exists
-  - [ ] Shell script: `htpx intercept` sets correct env vars
-  - [ ] Shell script: full flow - intercept → curl → verify captured
+### Phase 3c: Shell integration ✅
+- [x] `htpx init` - output shell function for zsh/bash
+- [x] `htpx intercept` - output env var exports (HTTP_PROXY, HTTPS_PROXY, CA vars)
+- [x] Auto-start daemon if needed
+- [x] Label support (--label flag)
+- [x] Register session with daemon
+- [x] **Tests:**
+  - [x] Unit: env var output formatting
+  - [x] Shell script: source `htpx init`, verify function exists
+  - [x] Shell script: `htpx intercept` sets correct env vars
+  - [x] Shell script: full flow - intercept → curl → verify captured
 
-### Phase 3d: TUI
-- [ ] Basic ink app structure
-- [ ] Two-panel layout (request list | details)
-- [ ] Request list with method, URL, status, timing
-- [ ] Request detail view (headers, body)
-- [ ] Response detail view
-- [ ] Keyboard navigation (j/k, enter, tab)
-- [ ] Export to curl (c key)
-- [ ] Export to HAR (h key)
-- [ ] Live updates (new requests appear)
-- [ ] Filter by label
-- [ ] **Tests:**
-  - [ ] Unit: curl export formatting
-  - [ ] Unit: HAR export formatting
-  - [ ] ink-testing-library: keyboard navigation
-  - [ ] ink-testing-library: selecting request shows details
+### Phase 3d: TUI ✅
+- [x] Basic ink app structure
+- [x] Two-panel layout (request list | details)
+- [x] Request list with method, URL, status, timing
+- [x] Request detail view (headers, body)
+- [x] Response detail view
+- [x] Keyboard navigation (j/k, enter, tab)
+- [x] Export to curl (c key)
+- [x] Export to HAR (h key)
+- [x] Live updates (new requests appear)
+- [x] Filter by label
+- [x] **Tests:**
+  - [x] Unit: curl export formatting
+  - [x] Unit: HAR export formatting
+  - [x] ink-testing-library: keyboard navigation
+  - [x] ink-testing-library: selecting request shows details
 
-### Phase 3e: Quality of life
-- [ ] `htpx status` command
-- [ ] `htpx stop` command
-- [ ] Graceful shutdown
-- [ ] Clear old requests command
-- [ ] Proper error messages
-- [ ] **Tests:**
-  - [ ] Integration: status reports correct state
-  - [ ] Integration: stop cleanly shuts down daemon
+### Phase 3e: Quality of life ✅
+- [x] `htpx status` command
+- [x] `htpx stop` command
+- [x] Graceful shutdown (SIGTERM/SIGINT handlers)
+- [x] Proper error messages (daemon startup errors now surface log output)
+- [ ] Clear requests command (backend exists, needs CLI)
+- [x] **Tests:**
+  - [x] Integration: status reports correct state
+  - [x] Integration: stop cleanly shuts down daemon
 
 ### Phase 3f: Distribution
 - [ ] Build standalone binary (pkg or bun compile)

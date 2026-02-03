@@ -242,6 +242,39 @@ test_stop_daemon() {
 }
 
 # ------------------------------------------------------------------------------
+# Test: htpx clear clears captured requests
+# ------------------------------------------------------------------------------
+test_clear_requests() {
+  init_test_project
+
+  # Start daemon via intercept
+  eval "$(node "$HTPX_BIN" intercept 2>&1 | grep '^export')"
+
+  # Clear requests
+  local output
+  output=$(node "$HTPX_BIN" clear 2>&1)
+
+  if echo "$output" | grep -q "Requests cleared"; then
+    pass "htpx clear confirms requests cleared"
+  else
+    fail "htpx clear confirms requests cleared" "Output: $output"
+    return
+  fi
+
+  # Verify request count is 0
+  output=$(node "$HTPX_BIN" status 2>&1)
+
+  if echo "$output" | grep -q "Requests captured: 0"; then
+    pass "request count is 0 after clear"
+  else
+    fail "request count is 0 after clear" "Output: $output"
+  fi
+
+  # Stop daemon after test
+  node "$HTPX_BIN" stop >/dev/null 2>&1 || true
+}
+
+# ------------------------------------------------------------------------------
 # Run all tests
 # ------------------------------------------------------------------------------
 echo "=== htpx shell integration tests ==="
@@ -252,6 +285,7 @@ test_sourcing_creates_function
 test_intercept_outputs_env_vars
 test_intercept_env_vars_evaluable
 test_status_shows_running
+test_clear_requests
 test_stop_daemon
 
 echo ""
